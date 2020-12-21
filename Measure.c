@@ -67,8 +67,13 @@ int main() {
         int client_socket = accept(socket_listener, (struct sockaddr *)&client_address, &client_address_length);
         if(client_socket == -1) {
            printf("listen failed with error code : %d",errno);
+<<<<<<< HEAD
            return -1;
         }
+=======
+        }
+        return -1;
+>>>>>>> e9880892a2ea8cb3baf9912563a25c1420399b2a
 
         printf("A new client connection accepted\n");
 
