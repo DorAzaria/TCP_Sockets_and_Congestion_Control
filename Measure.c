@@ -11,11 +11,12 @@
 
 #define SERVER_PORT 5060  //The port that the server listens.
 #define BILLION  1000000000.0
+#define BUFF_SIZE 1500
 
 int main() {
     // on linux to prevent crash on closing socket.
     signal(SIGPIPE, SIG_IGN);
-    char buffer[BUFSIZ];
+    char buffer[BUFF_SIZE];
 
     // create a socket lisener.
     int socket_listener = -1;
@@ -103,7 +104,7 @@ int main() {
 
             int bytes = -1;
             while(bytes != 0) {
-                bytes = recv(client_socket,buffer, BUFSIZ,0);
+                bytes = recv(client_socket,buffer, BUFF_SIZE,0);
             }
             clock_gettime(CLOCK_REALTIME, &end);
             // time_spent = end - start
