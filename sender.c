@@ -19,7 +19,7 @@
 int main() {
 
     /* INIT FIELDS
-    * --> file_pointer == a pointer to the given file.
+    * --> file_pointer == a pointer to the given file .
     * --> server_address == a structure describing an internet socket address.
     */    
     char buffer[BUFF_SIZE];
