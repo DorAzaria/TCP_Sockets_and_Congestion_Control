@@ -14,16 +14,15 @@
 #define SERVER_IP_ADDRESS    "127.0.0.1"
 #define FILENAME             "1mb.txt" 
 #define FULL_SIZE 1048576
+#define BUFF_SIZE 1500
 
 int main() {
 
     /* INIT FIELDS
-    * --> BUFSIZ == It gives us the maximum number of characters
-    *     that can be transferred through our standard input stream, stdin.
     * --> file_pointer == a pointer to the given file.
     * --> server_address == a structure describing an internet socket address.
     */    
-    char buffer[BUFSIZ];
+    char buffer[BUFF_SIZE];
     int file_size;
     FILE *file_pointer;
     socklen_t length;
@@ -101,13 +100,7 @@ int main() {
             }
 
             /* SEND DATA TO SERVER */
-            file_pointer = fopen(FILENAME, "rb");
-            if(file_pointer == NULL) {
-                fprintf(stderr, "Failed to open file 1mb.txt : %s\n", strerror(errno));
-                exit(EXIT_FAILURE);
-            }
-
-            int numbytes = recv(client_socket, buffer, BUFSIZ, 0);
+            int numbytes = recv(client_socket, buffer, BUFF_SIZE, 0);
         	if (numbytes == -1) {
             		perror("recv");
             		exit(1);
@@ -116,6 +109,12 @@ int main() {
 	        buffer[numbytes] = '\0';
 
         	printf("Received from server: '%s' \n", buffer);
+
+            file_pointer = fopen(FILENAME, "r");
+            if(file_pointer == NULL) {
+                fprintf(stderr, "Failed to open file 1mb.txt : %s\n", strerror(errno));
+                exit(EXIT_FAILURE);
+            }
 
             int data_stream;
             int size = 0;
@@ -134,6 +133,5 @@ int main() {
         }
         i++;
     }
-    fclose(file_pointer);
     return 0;
 }
