@@ -15,7 +15,7 @@
 ![](https://i.ibb.co/3m3XnvH/Screenshot-from-2020-12-23-18-21-29-1.png)
 
 In this project I used these algorithms to measure how long it takes them to accurately detect the packet losses with creating sockets using TCP protocol and CC algorithms in c language.
-I also used 'tc' (Traffic Control) to packet loss of 10%, 15%, 20%, 25% and 30% and here are the results:
+I also used 'tc' (Traffic Control) to packet loss of 10%, 15%, 20%, 25% and 30% by sending a 1MB file and here are the results:
 
 | Packet Loss | Cubic CC AVG Time | Reno CC AVG Time|
 | -- | --| -- | 
